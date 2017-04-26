@@ -32,8 +32,20 @@ class Hangman
     @word_state = @game_word.dup()
   end
 
-  def add_picked_letter(letter_choice)
-    @picked_letters.push(letter_choice)
+  def add_picked_letter(@letter_choice)
+    @picked_letters.push(@letter_choice)
+  end
+
+  def check_chances
+    if @game_word.split().include?(@letter_choice)
+      @chances
+    else
+      @chances -= 1
+    end
+  end
+
+  def game_over
+    return @chances == 0
   end
 
   def find_matches
